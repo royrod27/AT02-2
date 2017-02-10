@@ -1,0 +1,17 @@
+{
+  "name": "string_calculator",
+  "version": "1.0.0",
+  "description": "String Calculator using BDD",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "watch": "mocha --watch",
+    "smoke": "mocha --recursive"
+  },
+  "author": "Gualberto Villarroel",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
