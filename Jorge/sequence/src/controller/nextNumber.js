@@ -8,36 +8,20 @@ exports.nextNumber = function (array, position) {
     var result;
     if (position == 1)
         return prime.nextPrime();
-    else {
-        if ((position) % 3 == 0) {
+    if (position == 2)
+        return prime.nextPrime(array[position - 2]);
+    if (position > 2) {
+        if (position % 3 == 0) {
             result = operation.subtraction(array[position - 2], array[position - 3]);
         }
         else {
-            result = prime.nextPrime(position);
+            if (position % 3 == 1) {
+                result = prime.nextPrime(array[position - 3]);
+            }
+            if (position % 3 == 2)
+                result = prime.nextPrime(array[position - 2]);
+
         }
     }
     return result;
-}
-
-function nextPrime(value) {
-    value = value || 2;
-    while (!isPrime(value)) {
-        value++;
-    }
-
-}
-
-function isPrime(number) {
-    var divide = 0;
-    for (i = 1; i < number; i++) {
-        if (number % i == 0) {
-            divide++;
-        }
-    }
-    if (divide > 1) {
-        return false;
-    }
-    else {
-        return true;
-    }
 }

@@ -94,12 +94,28 @@ describe('Sequence', function () {
             var result = sequence.returnSequence(7);
             expect(expected).to.deep.equal(result);
         })
+        it('given 8  = [2, 3, 1, 5, 7, 2, 11, 13]', function () {
+            var expected = [2, 3, 1, 5, 7, 2, 11, 13];
+            var result = sequence.returnSequence(8);
+            expect(expected).to.deep.equal(result);
+        })
+        it('given 9  = [2, 3, 1, 5, 7, 2, 11, 13, 2]', function () {
+            var expected = [2, 3, 1, 5, 7, 2, 11, 13, 2];
+            var result = sequence.returnSequence(9);
+            expect(expected).to.deep.equal(result);
+        })
+        it('given 10  = [2, 3, 1, 5, 7, 2, 11, 13, 2, 17]', function () {
+            var expected = [2, 3, 1, 5, 7, 2, 11, 13, 2, 17];
+            var result = sequence.returnSequence(10);
+            expect(expected).to.deep.equal(result);
+        })
+        it('given 15  = [2, 3, 1, 5, 7, 2, 11, 13, 2, 17, 19, 2, 23, 29, 6 ]', function () {
+            var expected = [2, 3, 1, 5, 7, 2, 11, 13, 2, 17, 19, 2, 23, 29, 6];
+            var result = sequence.returnSequence(15);
+            expect(expected).to.deep.equal(result);
+        })
     })
 
 })
 
-//sequence.returnSequence(5);
-//console.log(prime.isPrime(4));
-//console.log(prime.nextPrime(7));
-console.log(nextNumber.nextNumber([1], 2));
-//console.log(sequence.returnSequence(3));
+
