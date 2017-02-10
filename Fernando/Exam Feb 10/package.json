@@ -1,0 +1,16 @@
+{
+  "name": "api102exam",
+  "version": "1.0.0",
+  "description": "Exam for api102",
+  "main": "examapi.js",
+  "scripts": {
+    "test": "mocha",
+    "watch": "mocha --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
