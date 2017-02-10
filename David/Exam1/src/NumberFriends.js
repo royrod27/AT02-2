@@ -10,20 +10,22 @@ function Friends() {
         var flag = false;
 
         if (this.isNumber(num1) || this.isNumber(num2)) {
-            res1 = this.sumDividers(num1);
-            res2 = this.sumDividers(num2);
+            if (!(num1 < 0 || num2 < 0)) {
+                res1 = this.sumDividers(num1);
+                res2 = this.sumDividers(num2);
 
-            if (res1 === num2 && res2 === num1) {
-                flag = true;
+                if (res1 === num2 && res2 === num1) {
+                    flag = true;
+                }
             }
         }
         return flag;
     };
 
     this.isNumber = function (num) {
-        if (!(isNaN(parseFloat(num)) && isFinite(num))){
+        if (!(isNaN(parseFloat(num)) && isFinite(num))) {
             return true;
-        }else{
+        } else {
             return false;
         }
     };
