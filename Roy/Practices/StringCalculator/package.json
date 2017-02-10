@@ -1,0 +1,16 @@
+{
+  "name": "stringcalculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "watch": "mocha --watch"
+  },
+  "author": "Roy Rodriguez",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
