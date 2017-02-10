@@ -3,20 +3,20 @@ function Sequence() {
     this.seque = function (num,callback) {
         this.num = parseInt(num);
 
-        var res = this.display(this.num);
+        var res = this.arrayWithPattern(this.num);
         callback(res);
     };
 
-    this.isPrime = function (number) {
-        for ( var i = 2; i < number; i++ ) {
-            if ( number % i === 0 ) {
+    this.isPrime = function (num) {
+        for ( var i = 2; i < num; i++ ) {
+            if ( num % i === 0 ) {
                 return false;
             }
         }
         return true;
-    }
+    };
 
-    this.display = function (n) {
+    this.arrayOfPrimes = function (num) {
         var arr = [2];
         var control = true;
         var i = 3;
@@ -25,23 +25,35 @@ function Sequence() {
             if ( this.isPrime(i) ) {
                 arr.push(i);
             }
-            if (arr[n-1] != null) {
+            if (arr[num-1] != null) {
                 control = false;
             }
             i+=2
         }
         return arr;
-    }
+    };
 
-    // this.join = function (array) {
-    //     var array_new= [];
-    //     var tam = array.length;
-    //
-    //     for (var con = 0; con < tam; con++){
-    //         array_new.push(array[1]-array[0]);
-    //     }
-    //     return array_new;
-    // }
+    this.arrayWithPattern = function (num) {
+        var array = [];
+        var posA = 0;
+        var posB = 1;
+        var splic = 2;
+
+        var arrayPrimes = this.arrayOfPrimes(num);
+
+        for (var cont = 0; cont < parseInt(arrayPrimes.length/2); cont++){
+            array.push(arrayPrimes[posB]-arrayPrimes[posA]);
+            posA += 2;
+            posB += 2;
+        }
+
+        for (var cont = 0; cont < array.length; cont++) {
+            arrayPrimes.splice(splic, 0, array[cont]);
+            splic += 3;
+        }
+
+        return arrayPrimes.slice(0, num);
+    };
 }
 
 module.exports = new Sequence();
