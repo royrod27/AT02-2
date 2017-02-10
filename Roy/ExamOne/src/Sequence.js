@@ -6,42 +6,48 @@
 function Sequence() {
     this.getSequence = function (n) {
         var result = [];
+        var rest = false;
+        var firstPrime = false;
+        var secondPrime = true;
         if ((n == 1))
             result = [2];
         else if (n == 2)
             result = [2, 3];
         else {
             result = [2, 3];
-
-            while (n - 2 > 0) {
-
-                if (result.length % 3 == 0) {
-                    var nextPrime = this.theNextPrime(result[result.length - 2]);
-                    console.log(result[result.length - 2])
-                    result.push(nextPrime);
-                }
-
-
-                else if (result.length % 2 == 0 && result.length % 3 != 0) {
+            var index = 2;
+            while (index < n) {
+                if (secondPrime) {
                     result.push(result[result.length - 1] - result[result.length - 2])
+                    rest = true;
+                    firstPrime = false;
+                    secondPrime = false;
                 }
-                n--;
+                else if (rest) {
+                    result.push(this.theNextPrime(result[result.length - 2]))
+                    firstPrime = true;
+                    rest = false;
+                    secondPrime = false;
+                }
+                else if (firstPrime) {
+                    result.push(this.theNextPrime(result[result.length - 1]))
+                    firstPrime = false;
+                    rest = false;
+                    secondPrime = true;
+                }
+                index++;
             }
 
-
         }
-
         return result
     }
 
     this.theNextPrime = function (value) {
-        if (value == 2)
-            return 3;
-        value ++;
-        while (!isPrime(value)) {
-            value++;
+        var res = value + 1;
+        while (!isPrime(res)) {
+            res++;
         }
-        return value;
+        return res
     }
 
     function isPrime(number) {
@@ -58,7 +64,6 @@ function Sequence() {
             return true;
         }
     }
-
 }
 
 
