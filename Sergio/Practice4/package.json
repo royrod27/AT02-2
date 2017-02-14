@@ -1,0 +1,17 @@
+{
+  "name": "automation",
+  "version": "1.0.0",
+  "description": "test for todo.ly",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/acceptance"
+  },
+  "author": "AT02-Team1",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "superagent": "^3.4.1",
+    "superagent-proxy": "^1.0.2"
+  }
+}
