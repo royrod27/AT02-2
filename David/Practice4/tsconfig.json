@@ -1,0 +1,9 @@
+{
+  "user" : "ariel.vallejos@fundacion-jala.org",
+  "password" : "AT02wolfy",
+  "proxy" : "http://172.31.90.146:3128",
+  "domain" : "https://todo.ly/api/projects",
+  "extension" : ".json",
+  "slash" : "/",
+  "statusOk": 200
+}
