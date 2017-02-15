@@ -2,7 +2,9 @@ var expect = require('chai').expect;
 var request = require('superagent');
 require('superagent-proxy')(request);
 
-describe('Acceptance Test for Projects',function () {
+var moment = require('moment');
+
+describe('Item Checked Test',function () {
     var expectedStatus = 200;
     this.timeout(10000);
 
@@ -47,7 +49,7 @@ describe('Acceptance Test for Projects',function () {
             });
     });
 
-    it('Verify that an item checked can be changed to unchecked', function (done) {
+    it('An item checked can be changed to unchecked', function (done) {
         var itemJson = {
             Content: 'Item Test',
             Checked: true,
@@ -80,6 +82,8 @@ describe('Acceptance Test for Projects',function () {
                     .end(function (err3,res3) {
                         expect(res3.status).to.equal(expectedStatus);
                         expect(res3.body.Checked).to.be.false;
+                        expect(moment().isSame(moment(res3.body.LastSyncedDateTime), 'day')).to.be.true;
+                        console.log(moment(res3.body.LastSyncedDateTime), 'day');
                         done();
                     });
             });
