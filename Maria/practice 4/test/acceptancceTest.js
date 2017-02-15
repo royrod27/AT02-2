@@ -11,7 +11,7 @@ var projectJson;
         
 
 
-describe.only('Acceptance Test for Projects',function(){
+describe('Acceptance Test for Projects',function(){
 	var expectedStatus=200;
 	projectJson = {
               Content: 'Project Test',
@@ -99,7 +99,7 @@ describe.only('Acceptance Test for Projects',function(){
 	it ('DELETE /projects.json delete a project', function(done){
            expect(resStatus).to.equal(expectedStatus);
 		   expect(projectDeleted.Deleted).to.be.true;
-            done();
+           done();
 	 }); 
 	
 });
