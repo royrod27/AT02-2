@@ -5,7 +5,7 @@ var expect = require('chai').expect;
 var request = require('superagent');
 require('superagent-proxy')(request);
 
-describe('Test for Projects', function () {
+describe('Test for Item', function () {
     this.timeout(8000);
     var projectJson = {};
     var itemJson = {};
@@ -83,7 +83,7 @@ describe('Test for Projects', function () {
     });
 
 
-    it('PUT / projects/[id].json update a project', function (done) {
+    it('PUT / item/[id].json update done to undone item', function (done) {
         itemJsonUpdate = {
             Checked: false
         };
@@ -102,4 +102,5 @@ describe('Test for Projects', function () {
 
     });
 })
+
 
