@@ -3,7 +3,7 @@ var request = require('superagent');
 var moment = require('moment');
 require('superagent-proxy')(request);
 
-describe.only('Acceptance Test for Projects',function(){
+describe('Acceptance Test for Projects',function(){
 	var resStatus;
 	var projectId;
 	var projectDeleted;
