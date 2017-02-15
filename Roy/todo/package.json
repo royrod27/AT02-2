@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --recursive",
     "smoke": "mocha test/smoke --recursive",
     "acceptance": "mocha test/acceptance --recursive"
   },
@@ -13,6 +13,7 @@
   "dependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
+    "moment": "^2.17.1",
     "superagent": "^3.4.1",
     "superagent-proxy": "^1.0.2",
     "xunit-file": "^1.0.0"
