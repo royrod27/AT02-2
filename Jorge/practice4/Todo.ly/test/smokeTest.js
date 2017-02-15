@@ -21,13 +21,13 @@ describe('Smoke Test for Projects', function () {
     });
 
     it('POST / projects.json returns 200', function (done) {
-        var project = {Icon:4};
+        var project = {Icon: 4};
 
         request
             .post('https://todo.ly/api/projects.json')
             .proxy('http://172.31.90.146:3128')
             .auth('Jorge.Forero@fundacion-jala.org', 'jb&11235')
-             .send(project)
+            .send(project)
             .end(function (err, res) {
                 expect(res.status).to.equal(expectedStatus);
                 done();
@@ -36,10 +36,10 @@ describe('Smoke Test for Projects', function () {
 
     it('PUT / projects/[id].json returns 200', function (done) {
         var idProject = -1;
-        var project = { Icon: 4 };
+        var project = {Icon: 4};
 
         request
-            .put('https://todo.ly/api/projects/' + idProject +'.json')
+            .put('https://todo.ly/api/projects/' + idProject + '.json')
             .proxy('http://172.31.90.146:3128')
             .auth('Jorge.Forero@fundacion-jala.org', 'jb&11235')
             .send(project)
@@ -53,7 +53,7 @@ describe('Smoke Test for Projects', function () {
         var idProject = 1;
 
         request
-            .del('https://todo.ly/api/projects/' + idProject +'.json')
+            .del('https://todo.ly/api/projects/' + idProject + '.json')
             .proxy('http://172.31.90.146:3128')
             .auth('Jorge.Forero@fundacion-jala.org', 'jb&11235')
             .end(function (err, res) {

@@ -3,10 +3,11 @@
  */
 var expect = require('chai').expect;
 var request = require('superagent');
+var moment = require('moment');
 require('superagent-proxy')(request);
 
 describe('Acceptance Test for Projects', function () {
-    this.timeout(8000);
+    this.timeout(9000);
     var projectJson = {};
     var projectJsonUpdate = {};
     var resJson = {};
@@ -47,7 +48,6 @@ describe('Acceptance Test for Projects', function () {
             .proxy('http://172.31.90.146:3128')
             .auth('Jorge.Forero@fundacion-jala.org', 'jb&11235')
             .end(function (err, res) {
-                //console.log(res.body);
                 expect(res.status).to.equal(expectedStatus);
                 expect(projectJson.Content).to.equal(res.body.Content);
                 expect(projectJson.Icon).to.equal(res.body.Icon);
@@ -57,6 +57,7 @@ describe('Acceptance Test for Projects', function () {
                 expect(res.body.ItemsCount).to.be.equal(0);
                 expect(res.body.Children).to.be.empty;
                 expect(res.body.Deleted).to.be.false;
+                expect(moment().isSame(moment(res.body.LastSyncedDateTime), 'day')).to.be.true;
                 done();
             });
     });
@@ -73,7 +74,6 @@ describe('Acceptance Test for Projects', function () {
             .auth('Jorge.Forero@fundacion-jala.org', 'jb&11235')
             .send(projectJsonUpdate)
             .end(function (err, res) {
-                //console.log(res.body);
                 expect(res.status).to.equal(expectedStatus);
                 expect(projectJsonUpdate.Content).to.equal(res.body.Content);
                 expect(projectJsonUpdate.Icon).to.equal(res.body.Icon);
@@ -83,6 +83,7 @@ describe('Acceptance Test for Projects', function () {
                 expect(res.body.ItemsCount).to.be.equal(0);
                 expect(res.body.Children).to.be.empty;
                 expect(res.body.Deleted).to.be.false;
+                expect(moment().isSame(moment(res.body.LastSyncedDateTime), 'day')).to.be.true;
                 done();
             });
     });
@@ -98,7 +99,6 @@ describe('Acceptance Test for Projects', function () {
             .auth('Jorge.Forero@fundacion-jala.org', 'jb&11235')
             .send(projectJson)
             .end(function (err, res) {
-                //console.log(res.body);
                 expect(res.status).to.equal(expectedStatus);
                 expect(res.body.Content).to.equal(projectJson.Content);
                 expect(res.body.Icon).to.equal(projectJson.Icon);
@@ -108,6 +108,7 @@ describe('Acceptance Test for Projects', function () {
                 expect(res.body.ItemsCount).to.be.equal(0);
                 expect(res.body.Children).to.be.empty;
                 expect(res.body.Deleted).to.be.false;
+                expect(moment().isSame(moment(res.body.LastSyncedDateTime), 'day')).to.be.true;
 
                 request
                     .del('https://todo.ly/api/projects/' + res.body.Id + '.json')
@@ -132,7 +133,6 @@ describe('Acceptance Test for Projects', function () {
             .auth('Jorge.Forero@fundacion-jala.org', 'jb&11235')
             .send(projectJson)
             .end(function (err, res) {
-                //console.log(res.body);
                 expect(res.status).to.equal(expectedStatus);
 
                 request
@@ -147,6 +147,7 @@ describe('Acceptance Test for Projects', function () {
                         expect(res.body.ItemsCount).to.be.equal(0);
                         expect(res.body.Children).to.be.empty;
                         expect(res.body.Deleted).to.be.true;
+                        expect(moment().isSame(moment(res.body.LastSyncedDateTime), 'day')).to.be.true;
                         done();
                     });
             });
