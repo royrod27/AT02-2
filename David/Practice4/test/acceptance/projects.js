@@ -14,7 +14,7 @@ describe('Acceptance Test for Projects', function () {
     var del;
     var projectCreated;
     var status;
-    var domain;
+    var urlProject;
     var proxy;
     var user;
     var pass;
@@ -23,12 +23,12 @@ describe('Acceptance Test for Projects', function () {
 
     before(function () {
         status = conf.statusOk;
-        domain = conf.domain;
+        urlProject = conf.url + 'projects';
         proxy = conf.proxy;
         user = conf.user;
         pass = conf.password;
         ext = conf.extension;
-        dom = conf.domain + conf.slash;
+        dom = urlProject + conf.slash;
         del = false
     });
 
@@ -38,16 +38,17 @@ describe('Acceptance Test for Projects', function () {
             Icon: 4
         };
 
-        request.post(conf.domain + conf.extension)
-            .proxy(conf.proxy)
-            .auth(conf.user, conf.password)
+        request.post(urlProject + ext)
+            .proxy(proxy)
+            .auth(user, pass)
             .send(projectJson)
             .end(function (err, res) {
                 projectCreated = res.body;
                 actual = res.status;
                 done();
-            })
+            });
     });
+
     afterEach(function (done) {
         request.del(dom + projectCreated.Id + ext)
             .proxy(proxy)
