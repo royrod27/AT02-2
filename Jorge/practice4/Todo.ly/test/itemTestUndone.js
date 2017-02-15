@@ -83,7 +83,7 @@ describe('Test for Projects', function () {
     });
 
 
-    it.only('PUT / projects/[id].json update a project', function (done) {
+    it('PUT / projects/[id].json update a project', function (done) {
         itemJsonUpdate = {
             Checked: false
         };
@@ -95,6 +95,7 @@ describe('Test for Projects', function () {
             .send(itemJsonUpdate)
             .end(function (err, res) {
                 expect(res.status).to.equal(expectedStatus);
+                expect(res.body.Id).to.equal(resItemJson.Id);
                 expect(res.body.Checked).to.be.false;
                 done();
             });
