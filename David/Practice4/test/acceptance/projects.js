@@ -6,6 +6,7 @@ var expect = require('chai').expect;
 var request = require('superagent');
 require('superagent-proxy')(request);
 var conf = require('../../tsconfig.json');
+var moment = require('moment');
 
 describe('Acceptance Test for Projects', function () {
     this.timeout(30000);
@@ -20,6 +21,7 @@ describe('Acceptance Test for Projects', function () {
     var pass;
     var ext;
     var dom;
+    var date;
 
     before(function () {
         status = conf.statusOk;
@@ -60,9 +62,13 @@ describe('Acceptance Test for Projects', function () {
     });
 
     it('POST /projects.json creates a project', function () {
+        date = moment(projectCreated.LastSyncedDateTime).format('l');
+
         expect(actual).to.equal(status);
         expect(projectCreated.Content).to.equal(projectJson.Content);
         expect(projectCreated.Icon).to.equal(projectJson.Icon);
+        /* Assertion Date */
+        expect(date).to.equal(moment().format('l'));
 
         /* More assertions */
         expect(projectCreated.Id).to.not.be.null;
@@ -70,7 +76,7 @@ describe('Acceptance Test for Projects', function () {
         expect(projectCreated.ItemsCount).to.be.equal(0);
         expect(projectCreated.Children).to.be.empty;
         expect(projectCreated.Deleted).to.be.false;
-
+        expect(projectCreated.Collapsed).to.be.false;
     });
 
     it('PUT /projects.json modify a project', function (done) {
@@ -85,8 +91,20 @@ describe('Acceptance Test for Projects', function () {
             .send(projectJson)
             .end(function (err, res) {
                 var projectModify = res.body;
+                date = moment(projectModify.LastUpdateDate).format('l');
                 expect(projectJson.Content).to.equal(projectModify.Content)
                 expect(projectJson.Icon).to.equal(projectModify.Icon)
+
+                /* Assertion Date */
+                expect(date).to.equal(moment().format('l'));
+
+                expect(projectModify.Id).to.not.be.null;
+                expect(projectModify.ParentId).to.be.null;
+                expect(projectModify.ItemsCount).to.be.equal(0);
+                expect(projectModify.Children).to.be.empty;
+                expect(projectModify.Deleted).to.be.false;
+                expect(projectModify.Collapsed).to.be.false;
+                expect(projectModify.Deleted).to.be.false;
                 done();
             });
 
@@ -96,6 +114,14 @@ describe('Acceptance Test for Projects', function () {
 
         expect(del).to.be.true;
         expect(actual).to.equal(status);
+        /* Assertion Date */
+        expect(date).to.equal(moment().format('l'));
 
+        expect(projectCreated.Id).to.not.be.null;
+        expect(projectCreated.ParentId).to.be.null;
+        expect(projectCreated.ItemsCount).to.be.equal(0);
+        expect(projectCreated.Children).to.be.empty;
+        expect(projectCreated.Deleted).to.be.false;
+        expect(projectCreated.Collapsed).to.be.false;
     });
 });
