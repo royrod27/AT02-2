@@ -1,11 +1,10 @@
 var expect = require('chai').expect;
 var request = require('superagent');
 require('superagent-proxy')(request);
+var moment = require('moment');
 
 
 describe('Acceptance Projects', function () {
-
-
     var expectedStatus = 200;
     this.timeout(10000);
 
@@ -49,6 +48,7 @@ describe('Acceptance Projects', function () {
             .send(projectJson)
             .end(function (err, res) {
                 var projectCreated = res.body;
+                expect(moment().isSame(moment(res.body.LastSyncedDateTime), 'day')).to.be.true;
                 expect(res.status).to.equal(expectedStatus);
                 expect(projectCreated.Content).to.equal(projectJson.Content);
                 expect(projectCreated.Icon).to.equal(projectJson.Icon);
@@ -82,6 +82,7 @@ describe('Acceptance Projects', function () {
             .end(function (err, res) {
                 expect(res.status).to.equal(expectedStatus);
                 expect(res.body.Icon).to.equal(newProjectJson.Icon);
+                expect(moment().isSame(moment(res.body.LastUpdateDate), 'day')).to.be.true;
                 done();
             });
 
@@ -120,6 +121,7 @@ describe('Acceptance Projects', function () {
             .end(function (err, res) {
                 expect(res.status).to.equal(expectedStatus);
                 expect(res.body.Icon).to.equal(projectJson.Icon);
+                expect(moment().isSame(moment(res.body.LastSyncedDateTime), 'day')).to.be.true;
                 done()
             });
 
