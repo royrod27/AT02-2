@@ -43,7 +43,6 @@ function deleteItem(itemId, callback) {
         });
 }
 
-
 exports.createItem = createItem;
 exports.modifyItem = modifyItem;
 exports.deleteItem = deleteItem;
